@@ -68,3 +68,46 @@ describe("receiveAttack(coordinates) method", () => {
 
     
 });
+
+describe("allShipsSunk() method", () => {
+    test("Return false if all ships have not sunk", () => {
+        const ship1 = new Ship(2);
+        const ship2 = new Ship(3);
+        const gameboard = new Gameboard();
+
+        gameboard.placeShip(ship1, [0, 0], 'horizontal');
+        gameboard.placeShip(ship2, [1, 0], 'horizontal');
+
+        // Sink ship1
+        gameboard.receiveAttack([0, 0]);
+        gameboard.receiveAttack([0, 1]);
+
+        // Ship2 attacked once
+        gameboard.receiveAttack([1, 0]);
+
+        expect(ship1.isSunk()).toBe(true);
+        expect(gameboard.allShipsSunk()).toBe(false);
+    });
+
+    test("Return true if all ships have sunk", () => {
+        const ship1 = new Ship(2);
+        const ship2 = new Ship(3);
+        const gameboard = new Gameboard();
+
+        gameboard.placeShip(ship1, [0, 0], 'horizontal');
+        gameboard.placeShip(ship2, [1, 0], 'horizontal');
+
+        // Sink ship1
+        gameboard.receiveAttack([0, 0]);
+        gameboard.receiveAttack([0, 1]);
+
+        // Sink ship2
+        gameboard.receiveAttack([1, 0]);
+        gameboard.receiveAttack([1, 1]);
+        gameboard.receiveAttack([1, 2]);
+
+        expect(ship1.isSunk()).toBe(true);
+        expect(ship2.isSunk()).toBe(true);
+        expect(gameboard.allShipsSunk()).toBe(true);
+    });
+});

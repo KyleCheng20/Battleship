@@ -46,4 +46,8 @@ export class Gameboard {
             this.missedAttacks.push(attackCoords);
         }
     }
+
+    allShipsSunk(){
+        return this.ships.every(ship => ship.isSunk());
+    }
 }
