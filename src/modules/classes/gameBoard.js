@@ -29,4 +29,21 @@ export class Gameboard {
         const shipCoords = `${x},${y}`;
         return this.board[shipCoords];
     }
+
+    receiveAttack(coordinates){
+        let [x, y] = coordinates;
+        let attackCoords = `${x},${y}`;
+
+        // Prevent duplicate attacks
+        if(this.hitAttacks.includes(attackCoords) || this.missedAttacks.includes(attackCoords)) return;
+
+        let ship = this.board[attackCoords];
+
+        if(ship){
+            ship.hit();
+            this.hitAttacks.push(attackCoords);
+        } else{
+            this.missedAttacks.push(attackCoords);
+        }
+    }
 }

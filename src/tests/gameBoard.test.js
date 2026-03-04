@@ -32,3 +32,39 @@ describe("Placing ships", () => {
         expect(gameboard.getShip([2, 2])).toBe(undefined);
     });
 });
+
+describe("receiveAttack(coordinates) method", () => {
+    test("Correctly attacks a ship on a board space", () => {
+        const ship = new Ship(3);
+        const gameboard = new Gameboard();
+
+        gameboard.placeShip(ship, [0, 0], 'horizontal');
+        gameboard.receiveAttack([0, 1]);
+
+        expect(ship.hitCount).toEqual(1);
+    });
+
+    test("Ignore attacks on the same coordinate", () => {
+        const ship = new Ship(3);
+        const gameboard = new Gameboard();
+
+        gameboard.placeShip(ship, [0, 0], 'horizontal');
+        gameboard.receiveAttack([0, 1]);
+        gameboard.receiveAttack([0, 1]);
+
+        expect(ship.hitCount).toEqual(1);
+    });
+
+    test("Records missed attacks", () => {
+        const ship = new Ship(3);
+        const gameboard = new Gameboard();
+
+        gameboard.placeShip(ship, [0, 0], 'horizontal');
+        gameboard.receiveAttack([5, 2]);
+        gameboard.receiveAttack([2, 7]);
+
+        expect(gameboard.missedAttacks).toEqual(['5,2', '2,7']);
+    });
+
+    
+});
