@@ -42,8 +42,10 @@ export class Gameboard {
         if(ship){
             ship.hit();
             this.hitAttacks.push(attackCoords);
+            return true;
         } else{
             this.missedAttacks.push(attackCoords);
+            return false;
         }
     }
 
