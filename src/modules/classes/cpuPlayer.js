@@ -19,7 +19,7 @@ export class CPUPlayer extends Player {
         } while(this.previousAttacks.has(key));
 
         if(this.previousAttacks.size >= 100) throw new Error("No available moves left");
-        this.previousAttacks.add(cpuCoord);
+        this.previousAttacks.add(key);
         
         return opponent.gameboard.receiveAttack(cpuCoord);
     }

@@ -31,6 +31,29 @@ describe("Placing ships", () => {
 
         expect(gameboard.getShip([2, 2])).toBe(undefined);
     });
+
+    test("Cannot place ships off of board horizontally", () => {
+        const gameboard = new Gameboard();
+        const ship = new Ship(4);
+
+        expect(() => gameboard.placeShip(ship, [0, 8], "horizontal")).toThrow();
+    });
+
+    test("Cannot place ships off of board vertically", () => {
+        const gameboard = new Gameboard();
+        const ship = new Ship(4);
+
+        expect(() => gameboard.placeShip(ship, [9, 0], "vertical")).toThrow();
+    });
+
+    test("Ships cannot overlap", () => {
+        const gameboard = new Gameboard();
+        const ship1 = new Ship(3);
+        const ship2 = new Ship(4);
+
+        gameboard.placeShip(ship1, [0, 0], "horizontal");
+        expect(() => gameboard.placeShip(ship2, [0, 1], "vertical")).toThrow();
+    });
 });
 
 describe("receiveAttack(coordinates) method", () => {

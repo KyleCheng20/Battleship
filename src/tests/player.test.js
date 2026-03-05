@@ -1,4 +1,3 @@
-import { Player } from "../modules/classes/player";
 import { Ship } from "../modules/classes/ship";
 import { HumanPlayer } from "../modules/classes/humanPlayer";
 import { CPUPlayer } from "../modules/classes/cpuPlayer";

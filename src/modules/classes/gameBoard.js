@@ -1,5 +1,6 @@
 export class Gameboard {
     constructor(){
+        this.boardSize = 10;
         this.board = {};    // Stores dictionary maps of coordinates as key, ships as value
         this.ships = [];
         this.missedAttacks = [];
@@ -9,19 +10,22 @@ export class Gameboard {
     placeShip(ship, startCoord, direction){
         const [x, y] = startCoord;
 
-        this.ships.push(ship);
+        if(direction === "horizontal" && y + ship.length > this.boardSize) throw new Error("Ship is out of bounds");
+        if(direction === "vertical" && x + ship.length > this.boardSize) throw new Error("Ship is out of bounds");
 
-        if(direction === 'horizontal'){
-            for(let i = 0; i < ship.length; i++){
-                let shipCoords = `${x},${y + i}`;
-                this.board[shipCoords] = ship;
-            }
-        } else if(direction === 'vertical'){
-            for(let i = 0; i <  ship.length; i++){
-                let shipCoords = `${x + i},${y}`;
-                this.board[shipCoords] = ship;
-            }
+        const coords = [];
+
+        for(let i = 0; i < ship.length; i++){
+            let shipCoords = direction === "horizontal" ? `${x},${y + i}` : `${x + i},${y}`;
+
+            if(this.board[shipCoords]) throw new Error("Ships cannot overlap");
+
+            coords.push(shipCoords);
         }
+
+        coords.forEach(coord => this.board[coord] = ship);
+
+        this.ships.push(ship);        
     }
 
     getShip(coordinates){

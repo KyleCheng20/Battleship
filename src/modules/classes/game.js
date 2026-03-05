@@ -21,3 +21,4 @@ export class Game {
         return this.player1.gameboard.allShipsSunk() || this.player2.gameboard.allShipsSunk();
     }
 }
+
