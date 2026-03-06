@@ -83,3 +83,7 @@ main {
 .cell {
     border: 1px solid black;
 }
+
+.ship {
+    background-color: gray;
+}
