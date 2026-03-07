@@ -7,7 +7,6 @@ export function startGame(){
     const player = new HumanPlayer("Player 1");
     const cpu = new CPUPlayer("CPU");
 
-    placeRandomShips(player.gameboard);
     placeRandomShips(cpu.gameboard);
 
     const game = new Game(player, cpu);

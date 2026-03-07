@@ -25,8 +25,5 @@ export function displayApp(){
     randomizeShipsBtn(game);
     startGameBtn(game);
 
-    // renderShips(player1Board, game.player1.gameboard);
-
     playerAttack(game);
-
 }
