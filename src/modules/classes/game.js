@@ -12,9 +12,18 @@ export class Game {
     playTurn(coordinate){
         const opponent = this.currentPlayer === this.player1 ? this.player2 : this.player1;
 
-        const wasHit = this.currentPlayer.attack(opponent, coordinate);
+        let wasHit = this.currentPlayer.attack(opponent, coordinate);
 
+        // Only switch turns if it was a miss and game is not over
         if(!wasHit && !opponent.gameboard.allShipsSunk()) this.switchTurn();
+
+        if(this.isGameOver()) return;
+
+        // CPU turn
+        if(this.currentPlayer === this.player2){
+            wasHit = this.currentPlayer.attack(this.player1);
+            if(!wasHit && !opponent.gameboard.allShipsSunk()) this.switchTurn();
+        }
     }
 
     isGameOver(){

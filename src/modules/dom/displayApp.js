@@ -1,6 +1,7 @@
 import { startGame } from "../utils/gameSetup";
 import { createBoard } from "./createBoard";
 import { renderShips } from "./renderShips";
+import { playerAttack } from "./playerAttack";
 
 export function displayApp(){
     const game = startGame();
@@ -12,5 +13,7 @@ export function displayApp(){
     createBoard(player2Board);
 
     renderShips(player1Board, game.player1.gameboard);
+
+    playerAttack(game);
 
 }
