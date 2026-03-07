@@ -5,6 +5,8 @@ export function randomizeShipsBtn(game){
     const btn = document.querySelector(".randomize-ships-btn");
 
     btn.addEventListener("click", () => {
+        if(!game.setupPhase) return;
+        
         game.player1.gameboard.board = {};
         game.player1.gameboard.ships = [];
         game.player1.gameboard.hitAttacks = [];

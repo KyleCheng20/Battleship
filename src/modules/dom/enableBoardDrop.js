@@ -16,6 +16,7 @@ export function enableBoardDrop(game){
 
 
             const length = Number(event.dataTransfer.getData("shipLength"));
+            if(!length) return;
             const x = Number(cell.dataset.x);
             const y = Number(cell.dataset.y);
 
