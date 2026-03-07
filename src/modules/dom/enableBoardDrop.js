@@ -21,6 +21,10 @@ export function enableBoardDrop(game){
                 game.player1.gameboard.placeShip(ship, [x, y], "horizontal");
 
                 renderShips(document.querySelector(".player1-board"), game.player1.gameboard);
+
+                const draggingShip = document.querySelector(".dragging");
+                if(draggingShip) draggingShip.remove();
+
             } catch(error){
                 console.log("Invalid placement")
             }
