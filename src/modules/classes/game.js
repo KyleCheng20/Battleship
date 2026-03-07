@@ -10,7 +10,7 @@ export class Game {
     }
 
     playTurn(coordinate){
-        const opponent = this.currentPlayer === this.player1 ? this.player2 : this.player1;
+        let opponent = this.currentPlayer === this.player1 ? this.player2 : this.player1;
 
         let wasHit = this.currentPlayer.attack(opponent, coordinate);
 
@@ -20,9 +20,13 @@ export class Game {
         if(this.isGameOver()) return;
 
         // CPU turn
-        if(this.currentPlayer === this.player2){
-            wasHit = this.currentPlayer.attack(this.player1);
-            if(!wasHit && !opponent.gameboard.allShipsSunk()) this.switchTurn();
+        while(this.currentPlayer === this.player2 && !this.isGameOver()){
+            opponent = this.player1;
+            const cpuHit = this.currentPlayer.attack(opponent);
+            if(!cpuHit && !opponent.gameboard.allShipsSunk()){
+                this.switchTurn();
+                break;
+            } 
         }
     }
 

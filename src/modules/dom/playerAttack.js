@@ -14,11 +14,14 @@ export function playerAttack(game){
 
             const x = Number(cell.dataset.x);
             const y = Number(cell.dataset.y);
+            const attackCoord = `${x},${y}`;
+
+            if(game.player2.gameboard.hitAttacks.includes(attackCoord) || game.player2.gameboard.missedAttacks.includes(attackCoord)) return;
 
             game.playTurn([x, y]);
 
             renderAttackResults(opponentBoard, game.player2.gameboard);
-            renderAttackResults(playerBoard, game.player2.gameboard);
+            renderAttackResults(playerBoard, game.player1.gameboard);
         });
     });
 }
