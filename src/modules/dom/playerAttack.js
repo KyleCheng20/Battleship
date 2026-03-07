@@ -1,6 +1,8 @@
 import { renderAttackResults } from "./renderAttackResults";
 
 export function playerAttack(game){
+    if(game.setupPhase) return;
+
     const playerBoard = document.querySelector(".player1-board");
     const opponentBoard = document.querySelector(".player2-board");
 

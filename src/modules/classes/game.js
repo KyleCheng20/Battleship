@@ -3,6 +3,7 @@ export class Game {
         this.player1 = player1;
         this.player2 = player2;
         this.currentPlayer = player1;
+        this.setupPhase = true;
     }
 
     switchTurn(){

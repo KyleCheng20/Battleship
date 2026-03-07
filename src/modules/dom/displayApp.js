@@ -2,6 +2,11 @@ import { startGame } from "../utils/gameSetup";
 import { createBoard } from "./createBoard";
 import { renderShips } from "./renderShips";
 import { playerAttack } from "./playerAttack";
+import { renderDragShips } from "./renderDragShips";
+import { enableBoardDrop } from "./enableBoardDrop";
+import { enableShipDrag } from "./enableShipDrag";
+import { randomizeShipsBtn } from "./randomizeShipsBtn";
+import { startGameBtn } from "./startGameBtn";
 
 export function displayApp(){
     const game = startGame();
@@ -12,7 +17,15 @@ export function displayApp(){
     createBoard(player1Board);
     createBoard(player2Board);
 
-    renderShips(player1Board, game.player1.gameboard);
+    renderDragShips(document.querySelector(".player1-ship-container"));
+
+    enableShipDrag();
+    enableBoardDrop(game);
+
+    randomizeShipsBtn(game);
+    startGameBtn(game);
+
+    // renderShips(player1Board, game.player1.gameboard);
 
     playerAttack(game);
 

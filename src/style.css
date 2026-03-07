@@ -63,6 +63,12 @@ main {
     gap: 1rem;
 }
 
+.board-container-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
 .player1-board-container,
 .player2-board-container {
     display: flex;
@@ -80,6 +86,10 @@ main {
     border: 1px solid black;
 }
 
+.player2-board .cell{
+    cursor: pointer;
+}
+
 .cell {
     border: 1px solid black;
 }
@@ -94,4 +104,16 @@ main {
 
 .miss {
     background-color: lightskyblue;
+}
+
+.ship-preview {
+    height: 40px;
+    background: gray;
+    margin: 8px;
+    cursor: grab;
+}
+
+.ships-btn-container {
+    display: flex;
+    flex-direction: column;
 }
