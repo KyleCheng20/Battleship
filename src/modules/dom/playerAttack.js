@@ -1,8 +1,6 @@
 import { renderAttackResults } from "./renderAttackResults";
 
 export function playerAttack(game){
-    if(game.setupPhase) return;
-
     const playerBoard = document.querySelector(".player1-board");
     const opponentBoard = document.querySelector(".player2-board");
 
@@ -10,6 +8,7 @@ export function playerAttack(game){
 
     opponentCells.forEach(cell => {
         cell.addEventListener("click", () => {
+            if(game.setupPhase) return;
 
             // Prevent player from clicking during cpu turn
             if(game.currentPlayer !== game.player1) return;

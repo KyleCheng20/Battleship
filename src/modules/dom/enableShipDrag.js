@@ -9,5 +9,9 @@ export function enableShipDrag(){
 
             event.target.classList.add("dragging");
         });
+
+        ship.addEventListener("dragend", () => {
+            ship.classList.remove("dragging");
+        });
     });
 }
