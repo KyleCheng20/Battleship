@@ -118,6 +118,10 @@ main {
     flex-direction: column;
 }
 
-.cell.preview {
+.preview {
   background-color: lightgray;
+}
+
+.preview-invalid {
+    background-color: lightcoral;
 }
