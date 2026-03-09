@@ -117,3 +117,7 @@ main {
     display: flex;
     flex-direction: column;
 }
+
+.cell.preview {
+  background-color: lightgray;
+}

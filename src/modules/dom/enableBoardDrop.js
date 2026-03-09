@@ -1,5 +1,8 @@
 import { Ship } from "../classes/ship";
 import { renderShips } from "./renderShips";
+import { clearPreview } from "./shipHoverPreview";
+import { showPreview } from "./shipHoverPreview";
+import { currentDraggedShipLength } from "./enableShipDrag";
 
 export function enableBoardDrop(game){
     const cells = document.querySelectorAll(".player1-board .cell");
@@ -7,10 +10,24 @@ export function enableBoardDrop(game){
     cells.forEach(cell => {
         cell.addEventListener("dragover", (event) => {
             event.preventDefault();
+
+            const length = currentDraggedShipLength;
+            if(!length) return;
+
+            const x = Number(cell.dataset.x);
+            const y = Number(cell.dataset.y);
+
+            showPreview(document.querySelector(".player1-board"), x, y, length);
+        });
+
+        cell.addEventListener("dragleave", () => {
+            clearPreview(document.querySelector(".player1-board"));
         });
 
         cell.addEventListener("drop", (event) => {
             event.preventDefault();
+
+            clearPreview(document.querySelector(".player1-board"));
 
             if(!game.setupPhase) return;
 
