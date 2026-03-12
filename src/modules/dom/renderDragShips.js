@@ -9,7 +9,12 @@ export function renderDragShips(shipContainer){
         ship.classList.add("ship-preview");
         ship.draggable = true;
         ship.dataset.length = length;
-        ship.style.width = `${length * 40}px`;
+
+        for(let i = 0; i < length; i++){
+            const shipSegment = document.createElement("div");
+            shipSegment.classList.add("ship-segment");
+            ship.appendChild(shipSegment);
+        }
 
         shipContainer.appendChild(ship);
     });
