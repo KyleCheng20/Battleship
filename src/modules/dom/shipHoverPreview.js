@@ -1,8 +1,10 @@
+import { currentOrientation } from "../utils/shipOrientation";
+import { updateShipPreviewOrientation } from "./updateShipPreviewOrientation";
+
 export function clearPreview(board){
     const previewCells = board.querySelectorAll(".preview, .preview-invalid");
     previewCells.forEach(cell => {
-        cell.classList.remove("preview");
-        cell.classList.remove("preview-invalid");
+        cell.classList.remove("preview", "preview-invalid");
     });
    
 }
@@ -14,7 +16,7 @@ export function showPreview(board, x, y, length){
     const cells = [];
 
     for(let i = 0; i < length; i++){
-        const cell = board.querySelector(`[data-x="${x}"][data-y="${y + i}"]`);
+        const cell = board.querySelector(currentOrientation === "horizontal" ? `[data-x="${x}"][data-y="${y + i}"]` : `[data-x="${x + i}"][data-y="${y}"]`);
 
         if(!cell){
             isValid = false;

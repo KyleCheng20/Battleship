@@ -3,6 +3,7 @@ import { renderShips } from "./renderShips";
 import { clearPreview } from "./shipHoverPreview";
 import { showPreview } from "./shipHoverPreview";
 import { currentDraggedShipLength } from "./enableShipDrag";
+import { currentOrientation } from "../utils/shipOrientation";
 
 export function enableBoardDrop(game){
     const cells = document.querySelectorAll(".player1-board .cell");
@@ -42,7 +43,7 @@ export function enableBoardDrop(game){
                 
                 const ship = new Ship(length);
 
-                game.player1.gameboard.placeShip(ship, [x, y], "horizontal");
+                game.player1.gameboard.placeShip(ship, [x, y], currentOrientation);
 
                 renderShips(document.querySelector(".player1-board"), game.player1.gameboard);
 

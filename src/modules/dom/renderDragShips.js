@@ -1,3 +1,5 @@
+import { updateShipPreviewOrientation } from "./updateShipPreviewOrientation";
+
 export function renderDragShips(shipContainer){
     const shipLengths = [5, 4, 3, 3, 2];
 
