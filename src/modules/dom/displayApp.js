@@ -10,6 +10,7 @@ import { startGameBtn } from "./startGameBtn";
 import { rotateShipsBtn } from "./rotateShipsBtn";
 import { rotateShipsKey } from "./rotateShipsKey";
 import { updateShipPreviewOrientation } from "./updateShipPreviewOrientation";
+import { resetBtn } from "./resetBtn";
 
 export function displayApp(){
     const game = startGame();
@@ -29,6 +30,7 @@ export function displayApp(){
     randomizeShipsBtn(game);
     rotateShipsBtn();
     rotateShipsKey();
+    resetBtn(game);
     startGameBtn(game);
 
     playerAttack(game);
