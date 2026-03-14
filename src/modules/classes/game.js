@@ -20,15 +20,7 @@ export class Game {
 
         if(this.isGameOver()) return;
 
-        // CPU turn
-        while(this.currentPlayer === this.player2 && !this.isGameOver()){
-            opponent = this.player1;
-            const cpuHit = this.currentPlayer.attack(opponent);
-            if(!cpuHit && !opponent.gameboard.allShipsSunk()){
-                this.switchTurn();
-                break;
-            } 
-        }
+        return wasHit;
     }
 
     isGameOver(){
