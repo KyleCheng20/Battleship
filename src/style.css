@@ -9,6 +9,11 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+button, 
+.ships-btn-container {
+    user-select: none;
+}
 /* --HEADER-- */
 header {
     display: flex;
@@ -107,14 +112,35 @@ main {
     background-color: lightskyblue;
 }
 
+.player1-ship-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.player1-ship-container.vertical-layout {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 1rem;
+}
+
+.player1-ship-container.vertical-layout .ship-preview:last-child {
+    grid-column: span 2;
+    justify-self: center;
+}
+
 .ship-preview {
     display: flex;
-    align-items: flex-start;
-    margin: 8px;
+    margin: 0.7rem;
     cursor: grab;
     width: fit-content;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+}
+
+.ship-preview.horizontal {
+    flex-direction: row;
+}
+
+.ship-preview.vertical {
+    flex-direction: column;
 }
 
 .ship-preview.used {
@@ -130,8 +156,7 @@ main {
     width: 40px;
     height: 40px;
     background: gray;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
+    border: 1px solid black;
 }
 
 .ships-btn-container {

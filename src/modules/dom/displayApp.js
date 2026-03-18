@@ -1,6 +1,5 @@
 import { startGame } from "../utils/gameSetup";
 import { createBoard } from "./createBoard";
-import { renderShips } from "./renderShips";
 import { playerAttack } from "./playerAttack";
 import { renderPlayerShips, renderCPUShips } from "./renderPreviewShips";
 import { enableBoardDrop } from "./enableBoardDrop";

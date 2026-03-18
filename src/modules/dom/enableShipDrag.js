@@ -6,9 +6,12 @@ export function enableShipDrag(){
     const ships = document.querySelectorAll(".ship-preview");
 
     ships.forEach(ship => {
-        if(ship.classList.contains("used")) return;
-        
         ship.addEventListener("dragstart", (event) => {
+            if(ship.classList.contains("used")){
+                event.preventDefault();
+                return;
+            } 
+
             currentDraggedShipLength = Number(ship.dataset.length);
 
             event.dataTransfer.setData("shipLength", ship.dataset.length);
