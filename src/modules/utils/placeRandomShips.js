@@ -3,7 +3,7 @@ import { Ship } from "../classes/ship";
 export function placeRandomShips(gameboard){
     const shipLengths = [5, 4, 3, 3, 2];
 
-    shipLengths.forEach(length => {
+    shipLengths.forEach((length, index) => {
         let placed = false;
 
         while(!placed){
@@ -12,6 +12,7 @@ export function placeRandomShips(gameboard){
             const y = Math.floor(Math.random() * 10);
 
             const ship = new Ship(length);
+            ship.id = index;
 
             try{
                 gameboard.placeShip(ship, [x, y], direction);

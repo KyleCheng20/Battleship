@@ -2,7 +2,7 @@ import { startGame } from "../utils/gameSetup";
 import { createBoard } from "./createBoard";
 import { renderShips } from "./renderShips";
 import { playerAttack } from "./playerAttack";
-import { renderDragShips } from "./renderDragShips";
+import { renderPlayerShips, renderCPUShips } from "./renderPreviewShips";
 import { enableBoardDrop } from "./enableBoardDrop";
 import { enableShipDrag } from "./enableShipDrag";
 import { randomizeShipsBtn } from "./randomizeShipsBtn";
@@ -21,7 +21,8 @@ export function displayApp(){
     createBoard(player1Board);
     createBoard(player2Board);
 
-    renderDragShips(document.querySelector(".player1-ship-container"));
+    renderPlayerShips(document.querySelector(".player1-ship-container"));
+    renderCPUShips(document.querySelector(".player2-ship-container"));
     updateShipPreviewOrientation();
 
     enableShipDrag();

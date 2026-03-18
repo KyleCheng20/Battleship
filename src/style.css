@@ -63,7 +63,8 @@ main {
     gap: 1rem;
 }
 
-.board-container-left {
+.board-container-left,
+.board-container-right {
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -114,7 +115,15 @@ main {
     width: fit-content;
     border-right: 1px solid black;
     border-bottom: 1px solid black;
+}
 
+.ship-preview.used {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.ship-preview.sunk .ship-segment{
+    background-color: red;
 }
 
 .ship-segment {

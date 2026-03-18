@@ -32,23 +32,32 @@ export function enableBoardDrop(game){
 
             if(!game.setupPhase) return;
 
-
             const length = Number(event.dataTransfer.getData("shipLength"));
             if(!length) return;
+            
             const x = Number(cell.dataset.x);
             const y = Number(cell.dataset.y);
 
             try{
                 if(game.player1.gameboard.ships.length >= 5) return;
                 
+                const draggingShip = document.querySelector(".dragging");
+                if(!draggingShip) return;
+
+                const shipId = draggingShip.dataset.shipId;
                 const ship = new Ship(length);
+                ship.id = shipId;
 
                 game.player1.gameboard.placeShip(ship, [x, y], currentOrientation);
 
                 renderShips(document.querySelector(".player1-board"), game.player1.gameboard);
 
-                const draggingShip = document.querySelector(".dragging");
-                if(draggingShip) draggingShip.remove();
+                // Mark ships as used after dropping onto the board
+                if(draggingShip){
+                    draggingShip.classList.remove("dragging");
+                    draggingShip.classList.add("used");
+                    draggingShip.draggable = false;
+                } 
 
             } catch(error){
                 console.log("Invalid placement")

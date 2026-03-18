@@ -1,4 +1,5 @@
 import { renderAttackResults } from "./renderAttackResults";
+import { updateShipStatus } from "./updateShipStatus";
 
 async function cpuTurn(game, playerBoard, opponentBoard){
     const statusText = document.querySelector(".status-text");
@@ -12,6 +13,7 @@ async function cpuTurn(game, playerBoard, opponentBoard){
 
         renderAttackResults(opponentBoard, game.player2.gameboard);
         renderAttackResults(playerBoard, game.player1.gameboard);
+        updateShipStatus(game);
 
         if(cpuHit){
             statusText.textContent = "CPU landed a hit!";
@@ -51,6 +53,7 @@ export function playerAttack(game){
 
             renderAttackResults(opponentBoard, game.player2.gameboard);
             renderAttackResults(playerBoard, game.player1.gameboard);
+            updateShipStatus(game);
 
             if(game.currentPlayer === game.player2) cpuTurn(game, playerBoard, opponentBoard);
         });

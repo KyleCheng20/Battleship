@@ -1,5 +1,5 @@
 import { Gameboard } from "../classes/gameBoard";
-import { renderDragShips } from "./renderDragShips";
+import { renderPlayerShips } from "./renderPreviewShips";
 import { createBoard } from "./createBoard";
 import { enableShipDrag } from "./enableShipDrag";
 import { enableBoardDrop } from "./enableBoardDrop";
@@ -17,7 +17,7 @@ export function resetBtn(game){
         createBoard(board);
 
         shipContainer.innerHTML = "";
-        renderDragShips(shipContainer);
+        renderPlayerShips(shipContainer);
 
         enableShipDrag();
         enableBoardDrop(game);
