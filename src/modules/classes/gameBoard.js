@@ -39,17 +39,17 @@ export class Gameboard {
         let attackCoords = `${x},${y}`;
 
         // Prevent duplicate attacks
-        if(this.hitAttacks.includes(attackCoords) || this.missedAttacks.includes(attackCoords)) return;
+        if(this.hitAttacks.includes(attackCoords) || this.missedAttacks.includes(attackCoords)) return { hit: false, ship: null };
 
         let ship = this.board[attackCoords];
 
         if(ship){
             ship.hit();
             this.hitAttacks.push(attackCoords);
-            return true;
+            return {hit: true, ship};
         } else{
             this.missedAttacks.push(attackCoords);
-            return false;
+            return {hit: false, ship};
         }
     }
 

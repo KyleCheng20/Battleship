@@ -13,6 +13,17 @@ import { resetBtn } from "./resetBtn";
 
 export function displayApp(){
     const game = startGame();
+    
+    const difficultyModal = document.querySelector(".difficulty-selector-modal");
+    difficultyModal.showModal();
+
+    const difficultyBtns = document.querySelectorAll(".difficulty-btn");
+    difficultyBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            game.cpuDifficulty = btn.dataset.difficulty;
+            difficultyModal.close();
+        });
+    });
 
     const player1Board = document.querySelector(".player1-board");
     const player2Board = document.querySelector(".player2-board");

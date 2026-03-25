@@ -9,7 +9,8 @@ async function cpuTurn(game, playerBoard, opponentBoard){
 
         await new Promise(resolve => setTimeout(resolve, 1600));
 
-        const cpuHit = game.playTurn();
+        const result = game.playTurn();
+        const cpuHit = result?.hit;
 
         renderAttackResults(opponentBoard, game.player2.gameboard);
         renderAttackResults(playerBoard, game.player1.gameboard);
@@ -49,7 +50,8 @@ export function playerAttack(game){
 
             if(game.player2.gameboard.hitAttacks.includes(attackCoord) || game.player2.gameboard.missedAttacks.includes(attackCoord)) return;
 
-            const hit = game.playTurn([x, y]);
+            const result = game.playTurn([x, y]);
+            const hit = result?.hit;
 
             renderAttackResults(opponentBoard, game.player2.gameboard);
             renderAttackResults(playerBoard, game.player1.gameboard);
