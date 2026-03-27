@@ -37,11 +37,13 @@ async function cpuTurn(game, playerBoard, opponentBoard){
 export function playerAttack(game){
     const playerBoard = document.querySelector(".player1-board");
     const opponentBoard = document.querySelector(".player2-board");
+    const statusText = document.querySelector(".status-text");
+
 
     const opponentCells = opponentBoard.querySelectorAll(".cell");
 
     opponentCells.forEach(cell => {
-        cell.addEventListener("click", () => {
+        cell.addEventListener("click", async () => {
             if(game.setupPhase) return;
 
             // Prevent player from clicking during cpu turn
@@ -54,14 +56,23 @@ export function playerAttack(game){
             if(game.player2.gameboard.hitAttacks.includes(attackCoord) || game.player2.gameboard.missedAttacks.includes(attackCoord)) return;
 
             const result = game.playTurn([x, y]);
-            const hit = result?.hit;
+            const hit = result.hit;
+
+            if(hit){
+                statusText.textContent = "You landed a hit! Your turn again";
+            } else{
+                statusText.textContent = "You missed. CPU's turn";
+            }
 
             renderAttackResults(opponentBoard, game.player2.gameboard);
             renderAttackResults(playerBoard, game.player1.gameboard);
             updateShipStatus(game);
             handleGameOver(game);
 
-            if(game.currentPlayer === game.player2) cpuTurn(game, playerBoard, opponentBoard);
+            if(game.currentPlayer === game.player2){
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                cpuTurn(game, playerBoard, opponentBoard);
+            } 
         });
     });
 }
