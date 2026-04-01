@@ -1,5 +1,4 @@
 import { currentOrientation } from "../utils/shipOrientation";
-import { updateShipPreviewOrientation } from "./updateShipPreviewOrientation";
 
 export function clearPreview(board){
     const previewCells = board.querySelectorAll(".preview, .preview-invalid");
