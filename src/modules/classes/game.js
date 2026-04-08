@@ -18,7 +18,6 @@ export class Game {
         if(this.currentPlayer === this.player2) result = this.player2.attack(opponent, this.cpuDifficulty);
         else result = this.player1.attack(opponent, coordinate);
 
-        // Normalize result (works for both object + boolean)
         const wasHit = result?.hit ?? result;
 
         // Only switch turns if miss and game not over

@@ -8,6 +8,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
 button, 
@@ -23,6 +24,8 @@ button:disabled {
 header {
     display: flex;
     padding: 1rem;
+    border-bottom: 1px solid black;
+    margin-bottom: 2rem;
 }
 
 img {
@@ -55,8 +58,10 @@ svg {
 
 /* --MAIN-- */
 main {
+    flex: 1;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .content-container {
@@ -84,6 +89,7 @@ main {
 .player2-board-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1rem;
 }
 
@@ -175,4 +181,88 @@ main {
 
 .preview-invalid {
     background-color: lightcoral;
+}
+
+/* --Turn Bar-- */
+.turn-bar-container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: gray;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.player1-turn-indicator,
+.player2-turn-indicator {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scaleX(0);
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.player1-turn-indicator {
+    left: 0;
+    background-color: blue;
+    transform-origin: right center;
+}
+
+.player2-turn-indicator {
+    right: 0;
+    background-color: red;
+    transform-origin: left center;
+}
+
+.active {
+    transform: scaleX(1);
+}
+
+.turn-text{
+    color: var(--dark-blue);
+}
+
+/* --FOOTER-- */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.75rem;
+}
+
+/* --Difficulty Modal-- */
+.difficulty-selector-modal {
+    border-radius: 10px;
+    border: 1px solid gray;
+    margin: auto;
+    padding: 1rem;
+    gap: 1.5rem;
+}
+
+dialog[open]{
+    display: flex;
+    flex-direction: column;
+}
+
+.difficulty-btns-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.difficulty-btn {
+    cursor: pointer;
+    width: 6rem;
+    height: 2rem;
+    border-radius: 5px;
+    border: 1px solid gray;
+    transition: 0.2s ease;
+}
+
+.difficulty-btn:hover {
+    background-color: darkgray;
 }

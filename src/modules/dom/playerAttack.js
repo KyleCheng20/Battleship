@@ -1,6 +1,7 @@
 import { renderAttackResults } from "./renderAttackResults";
 import { updateShipStatus } from "./updateShipStatus";
 import { handleGameOver } from "./handleGameOver";
+import { updateTurn } from "../utils/updateTurn";
 
 async function cpuTurn(game, playerBoard, opponentBoard){
     const statusText = document.querySelector(".status-text");
@@ -11,6 +12,7 @@ async function cpuTurn(game, playerBoard, opponentBoard){
         await new Promise(resolve => setTimeout(resolve, 1600));
 
         const result = game.playTurn();
+        updateTurn(game);
         const cpuHit = result?.hit;
 
         renderAttackResults(opponentBoard, game.player2.gameboard);
@@ -56,6 +58,7 @@ export function playerAttack(game){
             if(game.player2.gameboard.hitAttacks.includes(attackCoord) || game.player2.gameboard.missedAttacks.includes(attackCoord)) return;
 
             const result = game.playTurn([x, y]);
+            updateTurn(game);
             const hit = result?.hit;
 
             if(hit){

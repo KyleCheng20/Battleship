@@ -1,4 +1,5 @@
-import { renderPlayerShips } from "./renderPreviewShips"
+import { renderPlayerShips } from "./renderPreviewShips";
+import { updateTurn } from "../utils/updateTurn";
 
 export function startGameBtn(game){
     const btn = document.querySelector(".start-game-btn");
@@ -28,5 +29,6 @@ export function startGameBtn(game){
         resetBtn.disabled = true;
 
         statusText.textContent = "Game started!";
+        updateTurn(game);
     });
 }
