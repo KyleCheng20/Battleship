@@ -25,7 +25,7 @@ export class Gameboard {
 
         coords.forEach(coord => this.board[coord] = ship);
 
-        this.ships.push(ship);        
+        this.ships[ship.id] = ship;       
     }
 
     getShip(coordinates){

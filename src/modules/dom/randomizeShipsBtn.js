@@ -11,9 +11,22 @@ export function randomizeShipsBtn(game){
         game.player1.gameboard.ships = [];
         game.player1.gameboard.hitAttacks = [];
         game.player1.gameboard.missedAttacks = [];
-        document.querySelector(".player1-ship-container").innerHTML = "";
 
         placeRandomShips(game.player1.gameboard);
+
+        const shipPreviews = document.querySelectorAll(".player1-ship-container .ship-preview");
+
+        shipPreviews.forEach(preview => {
+            const shipId = preview.dataset.shipId;
+
+            // Check if that ship exists on the gameboard
+            const shipExists = game.player1.gameboard.ships[shipId];
+
+            if(shipExists){
+                preview.classList.add("used");
+                preview.draggable = false;
+            }
+        });
 
         const playerBoard = document.querySelector(".player1-board");
 
