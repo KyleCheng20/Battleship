@@ -27,6 +27,7 @@ export function startGameBtn(game){
         randomizeBtn.disabled = true;
         rotateShipsBtn.disabled = true;
         resetBtn.disabled = true;
+        btn.disabled = true;
 
         statusText.textContent = "Game started!";
         updateTurn(game);
